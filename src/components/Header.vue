@@ -5,13 +5,13 @@
       <Drawer v-model:visible="visible" position="right">
         <ul class="text-center font-bold text-lg">
           <li class="mb-4">
-            <a href="" @click="visible = false" class="hover:text-[#FF66C4]">Для кого</a>
+            <a href="#for-whom" @click="visible = false" class="hover:text-[#FF66C4]">Для кого</a>
           </li>
           <li class="mb-4">
-            <a href="" @click="visible = false" class="hover:text-[#FF66C4]">Про курс</a>
+            <a href="#course" @click="visible = false" class="hover:text-[#FF66C4]">Про курс</a>
           </li>
           <li class="mb-4">
-            <a href="" @click="visible = false" class="hover:text-[#FF66C4]">Учні</a>
+            <a href="#students" @click="visible = false" class="hover:text-[#FF66C4]">Учні</a>
           </li>
           <li class="mb-4">
             <a href="#comparison" @click="visible = false" class="hover:text-[#FF66C4]">Результати</a>

@@ -1,5 +1,5 @@
 <template>
-  <section id="comparison" class="py-16 bg-blush-pink">
+  <section id="students" class="py-16 bg-blush-pink">
     <div class="container mx-auto ">
       <h2 class="text-3xl font-bold text-center mb-12 text-pastel-peach">Студенти</h2>
 

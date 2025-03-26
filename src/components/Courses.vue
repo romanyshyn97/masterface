@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-sage-green mx-auto px-4 py-12">
+  <div id="course" class="bg-sage-green mx-auto px-4 py-12">
     <div class="w-full md:w-1/2 mx-auto">
     <div
         v-for="(step, index) in steps"
