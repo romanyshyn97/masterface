@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Mulish:wght@400;600&display=swap');
+@import 'primeicons/primeicons.css';
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Applying font-family */
+body {
+    font-family: 'Mulish', sans-serif;
+    color: #4A4A4A;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.galleria-transition-enter-active,
+.galleria-transition-leave-active {
+    transition: all 0.3s ease;
+}
+
+.galleria-transition-enter-from,
+.galleria-transition-leave-to {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.review-card {
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
