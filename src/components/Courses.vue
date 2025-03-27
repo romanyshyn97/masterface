@@ -26,7 +26,7 @@
           <h3 class="text-2xl font-bold mb-4 text-dark-gray">{{ step.title }}</h3>
           <p class="text-gray-600 mb-4" v-html="step.content"></p>
 
-          <div v-if="index === 4" class="mt-6 mx-auto text-center">
+          <div v-if="step.videos" class="mt-6 mx-auto text-center">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center mx-auto">
               <div class="relative w-full" style="padding-bottom: 177.78%"> <!-- 9:16 aspect ratio -->
                 <iframe
@@ -133,14 +133,11 @@ const steps = ref([
   },
   {
     title: 'Методична книга',
-    content: 'Для засвоєння знань є методична книга, яку можна скачати собі назавжди та перечитувати необмежену кількість разів.'
+    content: 'Для засвоєння знань є методична книга, яку можна скачати собі назавжди та перечитувати необмежену кількість разів. В ній зібрана вся необхідна теорія та знання для ефективної роботи.'
   },
   {
     title: 'Масажні техніки',
-    content: 'Наступні 6 тижнів ми освоюємо техніки масажу обличчя. Вивчення масажних технік відбувається по детальним відео урокам.'
-  },
-  {
-    title: 'Відео уроки',
+    content: 'Наступні 6 тижнів ми освоюємо техніки масажу обличчя. Вивчення масажних технік відбувається по детальним відео урокам.',
     videos: ['videoId1', 'videoId2', 'videoId3', 'videoId4', 'videoId5', 'videoId6']
   },
   {

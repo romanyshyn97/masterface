@@ -1,6 +1,6 @@
 <template>
-  <header class="bg-white/90 flex flex-col md:flex-row pb-4 items-center justify-between px-16 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-soft-peach">
-    <img src="@/assets/images/logo.png" alt="Logo" class="w-64 mr-2">
+  <header class="bg-white flex flex-col md:flex-row pb-2 items-center justify-between px-16 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-soft-peach">
+    <img src="@/assets/images/logo.png" alt="Logo" class="w-52 mr-2 pt-2">
     <div class="card flex justify-center">
       <Drawer v-model:visible="visible" position="right">
         <ul class="text-center font-bold text-lg">
