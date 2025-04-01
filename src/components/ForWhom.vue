@@ -11,6 +11,7 @@
             allowfullscreen>
         </iframe>
       </div>
+      <h4 class="text-logo-pink text-3xl font-bold text-center mt-8">Онлайн-курс “Омолоджуючий масаж обличчя”</h4>
       <h2 class="text-3xl text-dark-gray font-lora mb-8 mt-8">Для кого цей курс?</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Card 1 -->
