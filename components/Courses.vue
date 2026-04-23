@@ -16,8 +16,6 @@
     >
       <div
           class="flex flex-col md:flex-row items-center md:items-start gap-8"
-          v-intersect="[handleIntersect, { threshold: 0.1 }]"
-          :class="{'!opacity-100 translate-y-0': visibleElements[index]}"
           :style="`transition-delay: ${index * 100}ms`"
       >
         <div class="w-16 h-16 rounded-full bg-logo-pink text-white flex items-center justify-center text-2xl font-bold shrink-0">
@@ -34,6 +32,7 @@
                 <iframe
                     class="absolute top-0 left-0 w-full h-full rounded-xl shadow-lg"
                     src="https://www.youtube.com/embed/32p0kdLfJV8?autoplay=0&mute=1"
+                    title="Урок масажу — техніка 1"
                     frameborder="0"
                     allowfullscreen
                     loading="lazy"
@@ -44,6 +43,7 @@
                 <iframe
                     class="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/NV55gjHCRfg"
+                    title="Урок масажу — техніка 2"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -55,6 +55,7 @@
                 <iframe
                     class="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/wxNTMylYazE"
+                    title="Урок масажу — техніка 3"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -66,6 +67,7 @@
                 <iframe
                     class="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/EHXA2vppzQs"
+                    title="Урок масажу — техніка 4"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -77,6 +79,7 @@
                 <iframe
                     class="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/C7Jyf0Zq5Gs"
+                    title="Урок масажу — техніка 5"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -88,6 +91,7 @@
                 <iframe
                     class="absolute inset-0 w-full h-full"
                     src="https://www.youtube.com/embed/LBUXHoijC04"
+                    title="Урок масажу — техніка 6"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -109,9 +113,9 @@
 
     <!-- Bonus Section -->
     <div
-        class="p-8 rounded-2xl bg-lavender-mist border-2 border-deep-lavender mt-12"
-        v-intersect="[handleBonusIntersect, { threshold: 0.1 }]"
-        :class="{'!opacity-100 translate-y-0': bonusVisible}"
+        ref="bonusEl"
+        class="p-8 rounded-2xl bg-lavender-mist border-2 border-deep-lavender mt-12 transition-all duration-500"
+        :class="bonusVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'"
     >
       <div class="flex items-center gap-4 mb-4">
         <div class="bg-logo-pink text-white p-3 rounded-full">
@@ -119,43 +123,27 @@
             <path stroke-linecap="round"  stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-dark-gray">Бонус 🎁</h3>
+        <h3 class="text-2xl font-bold text-dark-gray flex items-center gap-2">
+          Бонус
+          <Gift class="w-5 h-5 text-primary-500" />
+        </h3>
       </div>
       <p class="text-gray-600">Для мене важливо підтримувати спілкування з учнями, тому після навчання. Ви завжди отримаєте зворотній звʼязок!</p>
     </div>
       <div class="flex justify-center">
-        <Button label="Забронювати місце" @click="visible = true" class="!bg-logo-pink !border-logo-pink mt-8 mx-auto" />
-
+        <Button size="lg" class="mt-8 mx-auto" @click="openBooking">Забронювати місце</Button>
       </div>
-      <Dialog v-model:visible="visible" modal header="Бронювання курсу" :style="{ width: '400px' }">
-        <div class="space-y-4 text-center mb-4">
-          <p class="text-lg">Ви можете зв'язатись зі мною за допомогою:</p>
-          <div class="flex justify-center space-x-6">
-            <a href="https://www.instagram.com/karina.master_face?igsh=MTFhY3N5cTB0cjRk" target="_blank" class="text-gray-600 hover:text-gray-900">
-              <font-awesome-icon class="h-8 hover:text-[#FF66C4] transition-colors duration-300" :icon="['fab', 'instagram']" />
-            </a>
-            <a href="https://t.me/+380983693213" target="_blank" class="text-gray-600 hover:text-gray-900">
-              <font-awesome-icon class="h-8 hover:text-blue-500 transition-colors duration-300" :icon="['fab', 'telegram']" />
-            </a>
-            <a href="viber://chat?number=+380983693213" class="text-gray-600 hover:text-gray-900">
-              <font-awesome-icon class="h-8 hover:text-purple-500 transition-colors duration-300" :icon="['fab', 'viber']" />
-            </a>
-          </div>
-          <p class="text-lg mt-4">Або за номер телефону:</p>
-          <a href="tel:+380983693213" class="text-logo-pink text-xl font-semibold">+380983693213</a>
-        </div>
-      </Dialog>
     </div>
   </div>
 </template>
 
 <script setup>
-import {onMounted, ref} from 'vue';
-import { useIntersectionObserver } from '@vueuse/core';
-import Dialog from "primevue/dialog";
-import Button from "primevue/button";
+import { onMounted, ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+import { Button } from '@/components/ui/button'
+import { Gift } from 'lucide-vue-next'
 
-const visible = ref(false);
+const { open: openBooking } = useBookingDialog()
 const steps = ref([
   {
     title: 'Теоретична підготовка',
@@ -188,53 +176,31 @@ const steps = ref([
   }
 ]);
 
-const visibleElements = ref(new Array(steps.value.length).fill(false));
-const bonusVisible = ref(false);
-
-const handleIntersect = (entries, observer, index) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      visibleElements.value[index] = true;
-    }
-  });
-};
-
-const handleBonusIntersect = ([entry]) => {
-  if (entry.isIntersecting) {
-    bonusVisible.value = true;
-  }
-};
-
-const stepElements = ref([]);
+const bonusVisible = ref(false)
+const stepElements = ref([])
+const bonusEl = ref(null)
 
 onMounted(() => {
   steps.value.forEach((step, index) => {
     if (stepElements.value[index]) {
       useIntersectionObserver(
-          stepElements.value[index],
-          ([entry]) => {
-            step.isVisible = entry.isIntersecting;
-          },
-          { threshold: 0.1 }
-      );
+        stepElements.value[index],
+        ([entry]) => { step.isVisible = entry.isIntersecting },
+        { threshold: 0.1 },
+      )
     }
-  });
-});
+  })
+  if (bonusEl.value) {
+    useIntersectionObserver(
+      bonusEl,
+      ([entry]) => { if (entry.isIntersecting) bonusVisible.value = true },
+      { threshold: 0.1 },
+    )
+  }
+})
 </script>
 
 <style>
-/* Animation styles */
-[v-intersect] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
-}
-
-[v-intresect].!opacity-100 {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @media (max-width: 768px) {
   .scroll-container {
     scrollbar-width: thin;

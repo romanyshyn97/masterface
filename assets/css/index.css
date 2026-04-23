@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* ─── Raw color values ──────────────────────────────────────────────────── */
+:root {
+  /* Brand pink scale */
+  --brand-50:  #FFF1F8;
+  --brand-100: #FFE0F0;
+  --brand-200: #FFC2E0;
+  --brand-300: #FF9DCD;
+  --brand-400: #FF7FC1;
+  --brand-500: #FF66C4;
+  --brand-600: #EF4DB4;
+  --brand-700: #DB2777;
+  --brand-800: #A8195C;
+  --brand-900: #7A0F44;
+
+  /* shadcn-vue semantic tokens (light only — no dark mode by design) */
+  --background:            #FDF8F5;
+  --foreground:            #1F1428;
+  --card:                  #FFFFFF;
+  --card-foreground:       #1F1428;
+  --popover:               #FFFFFF;
+  --popover-foreground:    #1F1428;
+  --primary:               #FF66C4;
+  --primary-foreground:    #FFFFFF;
+  --secondary:             #FBF1EE;
+  --secondary-foreground:  #1F1428;
+  --muted:                 #FBF1EE;
+  --muted-foreground:      #6B5B6E;
+  --accent:                #F5F0FF;
+  --accent-foreground:     #1F1428;
+  --destructive:           #DC2626;
+  --destructive-foreground:#FFFFFF;
+  --border:                #F1E4EC;
+  --input:                 #F1E4EC;
+  --ring:                  #FF66C4;
+  --radius:                0.75rem;
+}
+
+/* ─── Tailwind 4 token bridge ──────────────────────────────────────────── */
+@theme inline {
+  /* Semantic surface/text tokens (shadcn-vue compatible) */
+  --color-background:            var(--background);
+  --color-foreground:            var(--foreground);
+  --color-card:                  var(--card);
+  --color-card-foreground:       var(--card-foreground);
+  --color-popover:               var(--popover);
+  --color-popover-foreground:    var(--popover-foreground);
+  --color-primary:               var(--primary);
+  --color-primary-foreground:    var(--primary-foreground);
+  --color-secondary:             var(--secondary);
+  --color-secondary-foreground:  var(--secondary-foreground);
+  --color-muted:                 var(--muted);
+  --color-muted-foreground:      var(--muted-foreground);
+  --color-accent:                var(--accent);
+  --color-accent-foreground:     var(--accent-foreground);
+  --color-destructive:           var(--destructive);
+  --color-destructive-foreground:var(--destructive-foreground);
+  --color-border:                var(--border);
+  --color-input:                 var(--input);
+  --color-ring:                  var(--ring);
+
+  /* Brand scale (granular access for gradients, accents, etc.) */
+  --color-brand-50:  var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+
+  /* Legacy aliases — kept so pre-migration components keep rendering during the redesign */
+  --color-logo-pink:     #FF66C4;
+  --color-soft-peach:    #FFF3EB;
+  --color-lavender-mist: #F5F0FF;
+  --color-sage-green:    #E0F0E5;
+  --color-blush-pink:    #FFE8F0;
+  --color-deep-lavender: #D4C2FC;
+  --color-muted-teal:    #88C9B9;
+  --color-neutral-gray:  #F8F8F8;
+  --color-dark-gray:     #4A4A4A;
+
+  /* Typography */
+  --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+  --font-sans:    'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii — derived from --radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(31, 20, 40, 0.06);
+  --shadow-lift: 0 12px 32px rgba(31, 20, 40, 0.10);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Visible focus ring on every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ─── App-level transitions (kept) ──────────────────────────────────────── */
+.review-card {
+  transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ─── Reduced motion ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
