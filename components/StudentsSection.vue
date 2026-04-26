@@ -9,9 +9,10 @@ const students = Array.from({ length: 21 }, (_, i) => {
 </script>
 
 <template>
-  <section id="students" class="py-16 bg-secondary">
+  <section id="students" class="py-16">
+    <SectionLabel index="03" label="Учні" />
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-display font-semibold text-center mb-12 text-foreground">Студенти</h2>
+      <h2 class="text-3xl md:text-4xl font-display font-medium text-center mb-12 text-ink">Студенти</h2>
       <Carousel class="max-w-4xl mx-auto" aria-label="Студенти курсу">
         <CarouselItem v-for="(s, i) in students" :key="i">
           <div class="relative bg-muted rounded-lg overflow-hidden">

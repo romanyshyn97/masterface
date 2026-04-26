@@ -22,8 +22,8 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: 'Playfair Display', provider: 'google', weights: [400, 500, 600, 700] },
-      { name: 'Inter', provider: 'google', weights: [300, 400, 500, 600, 700] },
+      { name: 'Cormorant Garamond', provider: 'google', weights: [400, 500, 600], styles: ['normal', 'italic'] },
+      { name: 'Manrope', provider: 'google', weights: [300, 400, 500, 600, 700] },
     ],
   },
 

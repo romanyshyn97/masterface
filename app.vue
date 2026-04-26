@@ -3,6 +3,7 @@
 </script>
 
 <template>
+  <AuroraBackground />
   <Header />
   <MainSection />
   <ForWhom />

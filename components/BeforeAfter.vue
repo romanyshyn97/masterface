@@ -12,9 +12,11 @@ const comparisons = [
 </script>
 
 <template>
-  <section id="comparison" class="py-16 bg-background">
+  <section id="comparison" class="py-16">
+    <SectionLabel index="04" label="Результати" />
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-display font-semibold text-center mb-12 text-foreground">До / Після</h2>
+      <h2 class="text-3xl md:text-4xl font-display font-medium text-center mb-12 text-ink">До / Після</h2>
+
       <Carousel class="max-w-4xl mx-auto" aria-label="Результати до і після">
         <CarouselItem v-for="(c, i) in comparisons" :key="i">
           <div class="relative bg-muted rounded-lg overflow-hidden">

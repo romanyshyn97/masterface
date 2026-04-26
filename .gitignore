@@ -36,3 +36,6 @@ coverage
 .nitro
 .cache
 .env
+
+# Superpowers brainstorm session files
+.superpowers/

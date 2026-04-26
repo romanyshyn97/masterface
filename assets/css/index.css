@@ -3,7 +3,7 @@
 
 /* ─── Raw color values ──────────────────────────────────────────────────── */
 :root {
-  /* Brand pink scale */
+  /* Brand pink scale (unchanged) */
   --brand-50:  #FFF1F8;
   --brand-100: #FFE0F0;
   --brand-200: #FFC2E0;
@@ -15,26 +15,33 @@
   --brand-800: #A8195C;
   --brand-900: #7A0F44;
 
-  /* shadcn-vue semantic tokens (light only — no dark mode by design) */
-  --background:            #FDF8F5;
-  --foreground:            #1F1428;
+  /* Aurora canvas + decorative tints (Phase 3A) */
+  --canvas:           #FBF6F2;
+  --ink:              #1F1428;
+  --aurora-pink:      #FFE0EA;
+  --aurora-lavender:  #E5D4FF;
+  --aurora-peach:     #FFE3CC;
+
+  /* shadcn-vue semantic tokens — re-bound to the new system */
+  --background:            var(--canvas);
+  --foreground:            var(--ink);
   --card:                  #FFFFFF;
-  --card-foreground:       #1F1428;
+  --card-foreground:       var(--ink);
   --popover:               #FFFFFF;
-  --popover-foreground:    #1F1428;
-  --primary:               #FF66C4;
+  --popover-foreground:    var(--ink);
+  --primary:               var(--brand-500);
   --primary-foreground:    #FFFFFF;
   --secondary:             #FBF1EE;
-  --secondary-foreground:  #1F1428;
+  --secondary-foreground:  var(--ink);
   --muted:                 #FBF1EE;
   --muted-foreground:      #6B5B6E;
-  --accent:                #F5F0FF;
-  --accent-foreground:     #1F1428;
+  --accent:                var(--aurora-lavender);
+  --accent-foreground:     var(--ink);
   --destructive:           #DC2626;
   --destructive-foreground:#FFFFFF;
   --border:                #F1E4EC;
   --input:                 #F1E4EC;
-  --ring:                  #FF66C4;
+  --ring:                  var(--brand-500);
   --radius:                0.75rem;
 }
 
@@ -61,6 +68,13 @@
   --color-input:                 var(--input);
   --color-ring:                  var(--ring);
 
+  /* Aurora system tokens */
+  --color-canvas:          var(--canvas);
+  --color-ink:             var(--ink);
+  --color-aurora-pink:     var(--aurora-pink);
+  --color-aurora-lavender: var(--aurora-lavender);
+  --color-aurora-peach:    var(--aurora-peach);
+
   /* Brand scale (granular access for gradients, accents, etc.) */
   --color-brand-50:  var(--brand-50);
   --color-brand-100: var(--brand-100);
@@ -73,7 +87,7 @@
   --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900);
 
-  /* Legacy aliases — kept so pre-migration components keep rendering during the redesign */
+  /* Legacy aliases — kept so unmigrated sections keep rendering until Phase 3D */
   --color-logo-pink:     #FF66C4;
   --color-soft-peach:    #FFF3EB;
   --color-lavender-mist: #F5F0FF;
@@ -84,9 +98,9 @@
   --color-neutral-gray:  #F8F8F8;
   --color-dark-gray:     #4A4A4A;
 
-  /* Typography */
-  --font-display: 'Playfair Display', ui-serif, Georgia, serif;
-  --font-sans:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* Typography (Phase 3A: Cormorant Garamond + Manrope) */
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-sans:    'Manrope', ui-sans-serif, system-ui, sans-serif;
 
   /* Radii — derived from --radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -96,11 +110,14 @@
   --radius-2xl: calc(var(--radius) + 8px);
 
   /* Shadows */
-  --shadow-soft: 0 4px 20px rgba(31, 20, 40, 0.06);
-  --shadow-lift: 0 12px 32px rgba(31, 20, 40, 0.10);
+  --shadow-soft:           0 4px 20px rgba(31, 20, 40, 0.06);
+  --shadow-lift:           0 12px 32px rgba(31, 20, 40, 0.10);
+  --shadow-capsule:        0 6px 24px rgba(31, 20, 40, 0.08);
+  --shadow-capsule-docked: -8px 6px 24px rgba(31, 20, 40, 0.10);
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-aurora:   cubic-bezier(0.45, 0, 0.55, 1);
 }
 
 /* ─── Base ──────────────────────────────────────────────────────────────── */
@@ -111,8 +128,8 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
   }
 
   html {

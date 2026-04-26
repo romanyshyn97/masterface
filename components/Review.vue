@@ -7,9 +7,10 @@ const reviews = Array.from({ length: 8 }, (_, i) => ({
 </script>
 
 <template>
-  <section id="reviews" class="py-16 bg-card">
+  <section id="reviews" class="py-16">
+    <SectionLabel index="05" label="Відгуки" />
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-display font-semibold text-center mb-12 text-foreground">Відгуки</h2>
+      <h2 class="text-3xl md:text-4xl font-display font-medium text-center mb-12 text-ink">Відгуки</h2>
       <Carousel class="max-w-xl mx-auto" aria-label="Відгуки учениць">
         <CarouselItem v-for="(r, i) in reviews" :key="i">
           <div class="border border-border rounded-xl shadow-lift m-2 p-4 bg-card">
