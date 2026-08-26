@@ -37,24 +37,15 @@ function go(id: string) {
   scrollToHash('#' + id)
 }
 
-const mountReveal = computed(() => reduced.value
-  ? { initial: false, animate: { opacity: 1, y: 0 } }
-  : {
-      initial: { opacity: 0, y: -16 },
-      animate: { opacity: 1, y: 0 },
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-    },
-)
-
 const layoutSpring = { type: 'spring', stiffness: 280, damping: 28 }
 </script>
 
 <template>
   <motion.div
-    v-bind="mountReveal"
     layout
     :transition="layoutSpring"
     class="
+      header-mount
       fixed top-3 z-50 backdrop-blur-xl
       bg-white/55 border border-white/70
       flex items-center
@@ -139,3 +130,23 @@ const layoutSpring = { type: 'spring', stiffness: 280, damping: 28 }
     </Button>
   </motion.div>
 </template>
+
+<style scoped>
+/*
+  Mount entrance for the floating capsule.
+  CSS keyframes (not motion-v) so the animation is guaranteed to fire on first paint
+  even before JS hydration completes — fixes "header invisible until you scroll" in SSG.
+  Only opacity is animated to avoid conflicting with the centered state's translate-x.
+*/
+.header-mount {
+  animation: header-mount 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes header-mount {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-mount { animation: none; }
+}
+</style>

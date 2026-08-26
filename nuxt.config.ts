@@ -42,7 +42,15 @@ export default defineNuxtConfig({
     },
   },
 
-  nitro: {
-    preset: 'static',
+  // The landing page is still shipped as static HTML; only /api/booking runs as
+  // a serverless function (Nuxt auto-detects the Vercel preset on deploy).
+  routeRules: {
+    '/': { prerender: true },
+  },
+
+  runtimeConfig: {
+    // Server-only. Set via NUXT_TELEGRAM_BOT_TOKEN / NUXT_TELEGRAM_CHAT_ID.
+    telegramBotToken: '',
+    telegramChatId: '',
   },
 })
